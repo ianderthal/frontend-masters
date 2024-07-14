@@ -229,8 +229,18 @@ function defineFirstArg(func, arg) {
 
 // CHALLENGE 11
 function dateStamp(func) {
-
-}
+    //returns a function that accepts however many arguments the passed-in function accepts
+    function stamp(...params) {
+        // return an object 
+      return {
+        //with a date key that contains a timestamp with the time of invocation 
+        date: (new Date()).toDateString(),
+        //and an output key that contains the result from invoking the passed-in function
+        output: func(...params), 
+      }
+    }
+      return stamp;
+  }
 
 // /*** Uncomment these to check your work! ***/
 // const stampedMultBy2 = dateStamp(n => n * 2);
@@ -240,7 +250,20 @@ function dateStamp(func) {
 
 // CHALLENGE 12
 function censor() {
-
+	let pairs = [];
+  function change(str1, str2) {
+    if( str2 ) {
+      pairs.push({search: str1, replace: str2});
+      console.log(pairs);
+      return;
+    } else {
+      pairs.map((item) => {
+        str1 = str1.replace(item.search, item.replace);
+      })
+      return str1;
+    }
+  }
+  return change;
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -252,7 +275,19 @@ function censor() {
 
 // CHALLENGE 13
 function createSecretHolder(secret) {
-
+	let privateSecret = secret;
+  
+  function getSecret() {
+    console.log(privateSecret);
+    return privateSecret;
+  }
+  
+  function setSecret(x) {
+    privateSecret = x;
+  }
+  
+  return {getSecret, setSecret}
+  	
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -264,7 +299,12 @@ function createSecretHolder(secret) {
 
 // CHALLENGE 14
 function callTimes() {
-
+	let timesCalled = 0;
+    function incrementCounter() {
+        timesCalled++;
+      	console.log(timesCalled);
+    }
+    return incrementCounter;
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -278,7 +318,19 @@ function callTimes() {
 
 // CHALLENGE 15
 function roulette(num) {
-
+    let n = num;
+    function spin() {
+        if ( n > 1 ) {
+            n--;
+            return "spin";
+        } else if ( n == 1 ) {
+            n--;
+            return "win";
+        } else {
+            return "pick a number to play again";
+        }
+    }
+    return spin
 }
 
 // /*** Uncomment these to check your work! ***/
