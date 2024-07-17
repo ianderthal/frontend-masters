@@ -384,7 +384,30 @@ function makeFuncTester(arrOfTests) {
 // console.log(shouldCapitalizeLast(capLastAttempt2)); // => should log true
 
 // CHALLENGE 18
-function makeHistory(limit) {}
+function makeHistory(limit) {
+  let history = new Array(limit);
+
+  function myActions(string) {
+    // if undo is passed, delete the last save and return deleted string with the word 'undone' after
+    if (string === "undo") {
+      //if history is empty and 'undo' is passed
+      if (history.length === 0) {
+        return "nothing to undo";
+      } else {
+        let undone = history.pop();
+        return `${undone} undone`;
+      }
+    } else {
+      // if a string is passed into the function, retrn the string with 'done' after
+      if (history.length === limit) {
+        history.shift();
+      }
+      history.push(string);
+      return `${string} done`;
+    }
+  }
+  return myActions;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const myActions = makeHistory(2);
