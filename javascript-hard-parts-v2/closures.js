@@ -421,7 +421,9 @@ function makeHistory(limit) {
 // console.log(myActions('undo')); // => should log 'nothing to undo'
 
 // CHALLENGE 19
-function blackjack(array) {}
+function blackjack(array) {
+  // comment goes here
+}
 
 // /*** Uncomment these to check your work! ***/
 
