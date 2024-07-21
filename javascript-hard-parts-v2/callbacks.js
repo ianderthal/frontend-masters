@@ -64,12 +64,16 @@ function reduce(array, callback, initialValue) {
   return accumulator;
 }
 
- const nums = [4, 1, 3];
- const add = function(a, b) { return a + b; }
- console.log(reduce(nums, add, 0));   //-> 8
+// const nums = [4, 1, 3];
+// const add = function(a, b) { return a + b; }
+// console.log(reduce(nums, add, 0));   //-> 8
 
 // Challenge 7
-function intersection(arrays) {}
+function intersection(arrays) {
+  return arrays.reduce((accumulator, currentArray) => {
+    return accumulator.filter(item => currentArray.includes(item));
+  })
+}
 
 // console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
 // should log: [5, 15]
