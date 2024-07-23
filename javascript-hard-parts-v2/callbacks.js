@@ -71,21 +71,42 @@ function reduce(array, callback, initialValue) {
 // Challenge 7
 function intersection(arrays) {
   return arrays.reduce((accumulator, currentArray) => {
-    return accumulator.filter(item => currentArray.includes(item));
-  })
+    return accumulator.filter((item) => currentArray.includes(item));
+  });
 }
 
 // console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
 // should log: [5, 15]
 
 // Challenge 8
-function union(arrays) {}
+function union(arrays) {
+  return arrays.reduce((accumulator, currentArray) => {
+    currentArray.forEach((item) => {
+      if (!accumulator.includes(item)) {
+        accumulator.push(item);
+      }
+    });
+    return accumulator;
+  }, []);
+}
+
+// console.log(union([[5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]]));
+// should log: [5, 10, 15, 88, 1, 7, 100]
 
 // console.log(union([[5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]]));
 // should log: [5, 10, 15, 88, 1, 7, 100]
 
 // Challenge 9
-function objOfMatches(array1, array2, callback) {}
+function objOfMatches(array1, array2, callback) {
+  // initialize accumulator as an empty object
+  return array1.reduce((accumulator, currentElement, index) => {
+    // check if the result of `callback(currentElement)` matches the corresponding element in array2 at the same index
+    if (callback(currentElement) === array2[index]) {
+      accumulator[currentElement] = array2[index];
+    }
+    return accumulator;
+  }, {});
+}
 
 // console.log(objOfMatches(['hi', 'howdy', 'bye', 'later', 'hello'], ['HI', 'Howdy', 'BYE', 'LATER', 'hello'], function(str) { return str.toUpperCase(); }));
 // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
