@@ -112,13 +112,34 @@ function objOfMatches(array1, array2, callback) {
 // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
 
 // Challenge 10
-function multiMap(arrVals, arrCallbacks) {}
+function multiMap(arrVals, arrCallbacks) {
+  const result = {};
+
+  arrVals.forEach((arrVal) => {
+    result[arrVal] = arrCallbacks.map((arrCallback) => arrCallback(arrVal));
+  });
+
+  // return an object whose keys match the elements in the array of values
+  return result;
+}
 
 // console.log(multiMap(['catfood', 'glue', 'beer'], [function(str) { return str.toUpperCase(); }, function(str) { return str[0].toUpperCase() + str.slice(1).toLowerCase(); }, function(str) { return str + str; }]));
 // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 
 // Challenge 11
-function objectFilter(obj, callback) {}
+function objectFilter(obj, callback) {
+  // declare result object
+  const newObj = {};
+
+  for (let key in obj) {
+    //console.log(obj[key]);
+    if (callback(key) === obj[key]) {
+      newObj[key] = callback(key);
+    }
+  }
+  // return result object
+  return newObj;
+}
 
 // const cities = {
 // London: 'LONDON',
