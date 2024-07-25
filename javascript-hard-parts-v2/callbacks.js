@@ -149,7 +149,51 @@ function objectFilter(obj, callback) {
 // console.log(objectFilter(cities, city => city.toUpperCase())) // Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // Challenge 12
-function majority(array, callback) {}
+function majority(array, callback) {
+  // the concise solution
+  let falseRulings = 0;
+  let trueRulings = 0;
+
+  // iterate through the array and perform callback on each element
+  for (let i = 0; i < array.length; i++) {
+    // callback returns true or false, increment accordingly
+    callback(array[i]) ? trueRulings++ : falseRulings++;
+  }
+
+  //console.log(`The number of false rulings is ${falseRulings}. The number of true rulings is ${trueRulings}`);
+
+  // if true returns equal false returns, marjority is false
+  return trueRulings > falseRulings;
+
+  /* the verbose solution
+  let falseRulings = 0;
+  let trueRulings = 0;
+  let majorityRuling = false;
+
+  // iterate through the array and perform callback on each element
+  for (let i = 0; i < array.length; i++) {
+    // callback returns true or false
+    if (callback(array[i])) {
+      trueRulings++;
+    } else {
+      falseRulings++;
+    }
+  }
+
+  console.log(
+    `The number of false rulings is ${falseRulings}. The number of true rulings is ${trueRulings}`
+  );
+  // if true returns equal false returns, marjority is false
+  if (falseRulings > array.length / 2) {
+    return false;
+  }
+  if (trueRulings > array.length / 2) {
+    return true;
+  }
+
+  return false;
+  */
+}
 
 // /*** Uncomment these to check your work! ***/
 // const isOdd = function(num) { return num % 2 === 1; };
@@ -157,7 +201,16 @@ function majority(array, callback) {}
 // console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
 
 // Challenge 13
-function prioritize(array, callback) {}
+function prioritize(array, callback) {
+  let newArray = [];
+
+  for (let i = 0; i < array.length; i++) {
+    // the callback will return true/false, add it to the array depending on true/false
+    callback(array[i]) ? newArray.unshift(array[i]) : newArray.push(array[i]);
+  }
+  //return new array
+  return newArray;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const startsWithS = function(str) { return str[0] === 's' || str[0] === 'S'; };
