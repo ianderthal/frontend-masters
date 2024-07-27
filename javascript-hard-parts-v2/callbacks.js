@@ -218,7 +218,17 @@ function prioritize(array, callback) {
 ["seinfeld", "sunny", "curb", "rickandmorty", "friends"];
 
 // Challenge 14
-function countBy(array, callback) {}
+function countBy(array, callback) {
+  let newObject = {};
+  // iterate through the array and perform the callback on each element
+  for (let i = 0; i < array.length; i++) {
+    // each return value from the callback will be saved as a key on the object
+    const key = callback(array[i]);
+    // value associated with each key will be the number of times that particular return value was returned
+    newObject[key] ? newObject[key]++ : (newObject[key] = 1);
+  }
+  return newObject;
+}
 
 // /*** Uncomment these to check your work! ***/
 // console.log(countBy([1, 2, 3, 4, 5], function(num) {
@@ -227,7 +237,21 @@ function countBy(array, callback) {}
 // })); // should log: { odd: 3, even: 2 }
 
 // Challenge 15
-function groupBy(array, callback) {}
+function groupBy(array, callback) {
+  let newObj = {};
+
+  array.forEach((element) => {
+    // each return value is saved as a key on the object
+    const key = callback(element);
+    // if the key doesn't exist in the object, an empty array is created for it
+    if (!newObj[key]) {
+      newObj[key] = [];
+    }
+    // the element is pushed into the array corresponding to the key
+    newObj[key].push(element);
+  });
+  return newObj;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const decimals = [1.3, 2.1, 2.4];
