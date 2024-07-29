@@ -259,7 +259,21 @@ function groupBy(array, callback) {
 // console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
 
 // Challenge 16
-function goodKeys(obj, callback) {}
+function goodKeys(obj, callback) {
+  let newArray = [];
+  // iterate through the object and perform callback on each value
+  //Object.keys(obj).forEach(key => {
+  for (let key in obj) {
+    // callback will return true/false
+    const result = callback(obj[key]);
+    // return an array consisting only the keys whos values yielded true
+    if (result) {
+      newArray.push(key);
+    }
+    //console.log(`Key: ${key}, Value: ${thing}`);
+  }
+  return newArray;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
