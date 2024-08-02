@@ -281,7 +281,13 @@ function goodKeys(obj, callback) {
 // console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
 
 // Challenge 17
-function commutative(func1, func2, value) {}
+function commutative(func1, func2, value) {
+  const result1 = func2(func1(value));
+
+  const result2 = func1(func2(value));
+
+  return result1 === result2;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const multBy3 = n => n * 3;
