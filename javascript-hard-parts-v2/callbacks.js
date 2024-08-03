@@ -298,7 +298,20 @@ function commutative(func1, func2, value) {
 // console.log(commutative(divBy4, subtract5, 48)); // should log: false
 
 // Challenge 18
-function objFilter(obj, callback) {}
+function objFilter(obj, callback) {
+  // make a new object
+  let newObj = {};
+  // iterate through passed-in object
+  for (let key in obj) {
+    // using each key as input for the callback
+    if (obj[key] === callback(key)) {
+      // if the output from the callback is equal to the corresponding value, then that key-value pair is copied into the new object
+      newObj[key] = obj[key];
+    }
+  }
+  // return new object
+  return newObj;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const startingObj = {};
@@ -309,7 +322,25 @@ function objFilter(obj, callback) {}
 // console.log(objFilter(startingObj, half)); // should log: { 2: 1, 6: 3 }
 
 // Challenge 19
-function rating(arrOfFuncs, value) {}
+function rating(arrOfFuncs, value) {
+  let percentage = 0;
+  let trueResponse = 0;
+  // loop through the array
+  arrOfFuncs.forEach(function (element) {
+    console.log(element(value));
+    // pass the value into the function
+    // all the functions in the array will return true or false
+    if (element(value)) {
+      trueResponse++;
+      console.log(`The count of true responses is now ${trueResponse}`);
+    }
+    //console.log(trueResponse);
+  });
+  // ratings should return the percentage of functions from the array that return true when the value is used as input
+  percentage = (trueResponse / arrOfFuncs.length) * 100;
+  //return percentage;
+  return percentage;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const isEven = n => n % 2 === 0;
