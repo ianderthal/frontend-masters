@@ -352,7 +352,18 @@ function rating(arrOfFuncs, value) {
 // console.log(rating(checks, 66)); // should log: 75
 
 // Challenge 20
-function pipe(arrOfFuncs, value) {}
+function pipe(arrOfFuncs, value) {
+  return arrOfFuncs.reduce((acc, fn) => fn(acc), value);
+
+  /* alternative solution from answer key */
+  /*
+  let result = value;
+  for(let func in arrOfFuncs){
+    result = func(result);
+  }
+  return result;
+  */
+}
 
 // /*** Uncomment these to check your work! ***/
 // const capitalize = str => str.toUpperCase();
@@ -362,7 +373,21 @@ function pipe(arrOfFuncs, value) {}
 // console.log(pipe(capAddlowRepeat, 'cat')); // should log: 'CATcatCATcat'
 
 // Challenge 21
-function highestFunc(objOfFuncs, subject) {}
+function highestFunc(objOfFuncs, subject) {
+  let highestKey = null;
+  let highestValue = -Infinity;
+
+  for (let key of Object.keys(objOfFuncs)) {
+    //console.log(objOfFuncs[key](subject));
+    let value = objOfFuncs[key](subject);
+    if (value > highestValue) {
+      highestValue = value;
+      highestKey = key;
+    }
+  }
+
+  return highestKey;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const groupOfFuncs = {};
@@ -374,7 +399,9 @@ function highestFunc(objOfFuncs, subject) {}
 // console.log(highestFunc(groupOfFuncs, -20)); // should log: 'inverse'
 
 // Challenge 22
-function combineOperations(startVal, arrOfFuncs) {}
+function combineOperations(startVal, arrOfFuncs) {
+  return arrOfFuncs.reduce((acc, fn) => fn(acc), startVal);
+}
 
 function add100(num) {
   return num + 100;
@@ -393,7 +420,12 @@ function multiplyByThree(num) {
 // console.log(combineOperations(0, [divByFive, multiplyFive, addTen])); // Should output 10
 
 // Challenge 23
-function myFunc(array, callback) {}
+function myFunc(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    if (callback(array[i])) return i;
+  }
+  return -1;
+}
 
 const numbers = [2, 3, 6, 64, 10, 8, 12];
 const evens = [2, 4, 6, 8, 10, 12, 64];
@@ -407,7 +439,11 @@ function isOdd(num) {
 // console.log(myFunc(evens, isOdd)); // Output should be -1
 
 // Challenge 24
-function myForEach(array, callback) {}
+function myForEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i]);
+  }
+}
 
 let sum = 0;
 
